@@ -5,38 +5,206 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ماشین حساب</title>
-    <link rel="stylesheet" href="./style.css" />
+
+    <!--styles -->
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+      }
+
+      section {
+        width: 500px;
+        max-width: 500px;
+        height: 600px;
+        max-height: 600px;
+        display: flex;
+        flex-direction: column;
+        background-color: #393f3f;
+        border-radius: 12px;
+      }
+      body {
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        inset: 0;
+      }
+      .display-con {
+        width: 100%;
+        height: 140px;
+        padding: 25px;
+      }
+      .display-con .display {
+        width: 100%;
+        height: 100%;
+        background-color: #dff3ac;
+        border: 6px solid black;
+        color: #080808;
+        border-radius: 8px;
+        font-size: 2.5rem;
+        align-self: center;
+        padding: 3px 10px 0px 15px;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        box-shadow: inset 2px 12px 20px 0px #6c7653;
+      }
+      .buttons-con {
+        width: 100%;
+        height: 80%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        row-gap: 20px;
+        column-gap: 10px;
+        padding: 5px 25px 35px 25px;
+      }
+      .buttons-con button {
+        background-color: #272727;
+        color: white;
+        font-size: 1.6rem;
+        font-family: sans-serif;
+        font-weight: 600;
+        border-radius: 8px;
+        box-shadow: inset 0px 0px 5px 1px #3f3f3f;
+        border: 1px solid #0a0a0a;
+      }
+      @font-face {
+        font-family: digital;
+        src: url(./0\ Digital\ Bold.ttf);
+      }
+      #box-1,
+      #box-2 {
+        background-color: #656563;
+      }
+      #box-3,
+      #box-4,
+      #box-8,
+      #box-12,
+      #box-16 {
+        background-color: #ff526d;
+      }
+      #box-16 {
+        grid-row: span 2 / span 2;
+      }
+      #box-19 {
+        background-color: #ffb62c;
+      }
+    </style>
   </head>
+
+  <!-- htmls -->
   <body>
     <section>
       <div class="display-con">
-        <div class="display"></div>
+        <div id="display" class="display"></div>
       </div>
       <div class="buttons-con">
-        <div class="operator-1">
-          <button class="operator-1-button">MRC</button
-          ><button class="operator-1-button">M-</button
-          ><button class="operator-1-button">M+</button
-          ><button class="operator-1-button">/</button>
-        </div>
-        <div class="buttons-con-2">
-          <div class="numbers-con">
-            <button class="numbers">1</button><button class="numbers">2</button
-            ><button class="numbers">3</button><button class="numbers">4</button
-            ><button class="numbers">5</button><button class="numbers">6</button
-            ><button class="numbers">7</button><button class="numbers">8</button
-            ><button class="numbers">9</button><button class="numbers">0</button
-            ><button class="numbers" style="font-weight: 900">.</button
-            ><button class="numbers">C</button>
-          </div>
-          <div class="operator-2">
-            <button class="operator-2-button">*</button
-            ><button class="operator-2-button">-</button
-            ><button class="operator-2-button">+</button
-            ><button class="operator-2-button">=</button>
-          </div>
-        </div>
+        <button id="box-1">C</button><button id="box-2">Del</button
+        ><button id="box-3">%</button><button id="box-4">/</button
+        ><button id="box-5">7</button><button id="box-6">8</button
+        ><button id="box-7">9</button><button id="box-8">*</button
+        ><button id="box-9">4</button><button id="box-10">5</button
+        ><button id="box-11">6</button><button id="box-12">-</button
+        ><button id="box-13">1</button><button id="box-14">2</button
+        ><button id="box-15">3</button> <button id="box-16">+</button
+        ><button id="box-17">0</button>
+        <button id="box-18">.</button>
+        <button id="box-19">=</button>
       </div>
     </section>
+    <!-- scripts -->
+    <script>
+      //انتخاب دکمه ها
+      let display = document.getElementById("display");
+      let number1 = document.getElementById("box-13");
+      let number2 = document.getElementById("box-14");
+      let number3 = document.getElementById("box-15");
+      let number4 = document.getElementById("box-9");
+      let number5 = document.getElementById("box-10");
+      let number6 = document.getElementById("box-11");
+      let number7 = document.getElementById("box-5");
+      let number8 = document.getElementById("box-6");
+      let number9 = document.getElementById("box-7");
+      let number0 = document.getElementById("box-17");
+      let plus = document.getElementById("box-16");
+      let minus = document.getElementById("box-12");
+      let x = document.getElementById("box-8");
+      let division = document.getElementById("box-4");
+      let percent = document.getElementById("box-3");
+      let del = document.getElementById("box-2");
+      let clear = document.getElementById("box-1");
+      let equal = document.getElementById("box-19");
+      //رویداد دکمه ها
+      number0.addEventListener("click", function () {
+        display.innerText += number0.innerText;
+      });
+      number1.addEventListener("click", function () {
+        display.innerText += number1.innerText;
+      });
+      number2.addEventListener("click", function () {
+        display.innerText += number2.innerText;
+      });
+      number3.addEventListener("click", function () {
+        display.innerText += number3.innerText;
+      });
+      number4.addEventListener("click", function () {
+        display.innerText += number4.innerText;
+      });
+      number5.addEventListener("click", function () {
+        display.innerText += number5.innerText;
+      });
+      number6.addEventListener("click", function () {
+        display.innerText += number6.innerText;
+      });
+      number7.addEventListener("click", function () {
+        display.innerText += number7.innerText;
+      });
+      number8.addEventListener("click", function () {
+        display.innerText += number8.innerText;
+      });
+      number9.addEventListener("click", function () {
+        display.innerText += number9.innerText;
+      });
+      clear.addEventListener("click", function () {
+        display.innerText = "";
+      });
+      equal.addEventListener("click", () => {
+        display.innerText = eval(display.innerText);
+      });
+      plus.addEventListener("click", () => {
+        display.innerText += plus.innerText;
+      });
+      minus.addEventListener("click", () => {
+        display.innerText += minus.innerText;
+      });
+      x.addEventListener("click", () => {
+        display.innerText += x.innerText;
+      });
+      division.addEventListener("click", () => {
+        display.innerText += division.innerText;
+      });
+      percent.addEventListener("click", () => {
+        display.innerText += percent.innerText;
+      });
+      del.addEventListener("click", () => {
+        display.innerText = display.innerText.slice(0, -1);
+      });
+
+      //tests
+      let now = new Date(1999, 12, 26).toLocaleDateString("fa-IR");
+      let future = new Date(2024, 11, 31, 06, 16, 40).toLocaleDateString(
+        "fa-IR"
+      );
+      if (now < future) {
+        console.log("هنوز وقتش نرسیده");
+      }
+      if (now > future) {
+        console.log("خیلی وقته که گدشته");
+      }
+      console.log(now);
+      console.log(future);
+    </script>
   </body>
 </html>
